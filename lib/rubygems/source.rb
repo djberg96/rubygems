@@ -184,7 +184,7 @@ class Gem::Source
     file       = FILES[type]
     fetcher    = Gem::RemoteFetcher.fetcher
     file_name  = "#{file}.#{Gem.marshal_version}"
-    spec_path  = api_uri + "#{file_name}.gz"
+    spec_path  = URI.parse(File.join(api_uri.to_s, "#{file_name}.gz").tr("\\", "/"))
     cache_dir  = cache_dir spec_path
     local_file = File.join(cache_dir, file_name)
     retried    = false
